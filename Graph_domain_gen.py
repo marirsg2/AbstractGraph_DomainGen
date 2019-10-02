@@ -1,5 +1,7 @@
 """
 
+THINK combining position (motion) and task where it is interconnected and not separable into task and motion plans
+
 x_nodes are position nodes. Think of a robot navigating through a building. Or in this case a linear path.
 At each step it can do other things that change it's state. It can hitch a ride with another robot, it can ask a human to help.
 and do so many other things. It LOSES it's position in the linear path when this is done, and returning back is hard.
@@ -22,6 +24,7 @@ import pickle
 pickle_dest_file_name = "abstract_graph_domain.p"
 num_properties = 5 #prop1, prop2 etc.
 value_ranges = [[0,1]]*num_properties #can be diff range of values too
+dict_prop_to_value_range = {}
 odds_of_edge = 0.125
 odds_return_to_x = 0.05
 num_props_per_operator = 2 #so an operator changes 2 properties. (can change only 1 value, but conditioned on two)
@@ -34,13 +37,14 @@ num_x_property_graph_nodes = 10 #also the length of the x property
 x_prop_nodes = set()
 prop_dict = {}
 edge_propositions = []
+dict_prop_to_value_range["x"] = list(range(num_x_property_graph_nodes))
 for i in range(num_x_property_graph_nodes-1):
     prop_dict["x_"+str(i)] = {"x":i}
     prop_dict["x_"+str(i+1)] = {"x":i+1}
     state_graph.add_edge("x_" + str(i), "x_" + str(i + 1))
     x_prop_nodes.add("x_"+str(i))
     x_prop_nodes.add("x_"+str(i+1))
-    edge_propositions.append("Allow_x_end_" + str(i) + "_" + str(i+1))
+    edge_propositions.append("Allow_x_end_" + "v"+str(i) + "_" + "v"+str(i+1))
 
 
 #now we have nodes x_0 to x_n connected by edges in between
@@ -53,6 +57,7 @@ for i in range(num_x_property_graph_nodes-1):
 # plt.show()
 
 
+
 #generate nodes for each possible value. so 2^num_properties.
 all_nodes_properties = [[x,y] for x in value_ranges[0] for y in value_ranges[1]]
 for i in range(2,len(value_ranges)):
@@ -62,6 +67,8 @@ num_random_property_cases = len(all_nodes_properties)
 # print(len(all_nodes_properties),list(all_nodes_properties))
 # print(value_ranges)
 ordered_all_random_prop_names = ["prop" + str(i) for i in range(num_properties)]
+dict_prop_to_value_range = {**dict_prop_to_value_range ,
+                            **{"prop" + str(i): value_ranges[i] for i in range(num_properties)}} #merge dicts
 for i in range(len(all_nodes_properties)):
     node_name = "Rand_"+str(i)
     state_graph.add_node(node_name)
@@ -104,8 +111,8 @@ for a_node in state_graph.nodes():
             new_proposition += "_prop" + str(index)
         new_proposition += "_end"
         for index in indices:
-            new_proposition += "_"+str(prop_dict[a_node][ordered_all_random_prop_names[index]])\
-                                                    +"_"+str(prop_dict[b_node][ordered_all_random_prop_names[index]])
+            new_proposition += "_"+"v"+str(prop_dict[a_node][ordered_all_random_prop_names[index]])\
+                                                    +"_"+"v"+str(prop_dict[b_node][ordered_all_random_prop_names[index]])
         edge_propositions.append(new_proposition)
         state_graph.add_edge(a_node, b_node)
     #end inner for
@@ -134,6 +141,7 @@ with open(pickle_dest_file_name,"wb") as dest:
     pickle.dump(edge_propositions,dest)
     pickle.dump(operators,dest)
     pickle.dump(ordered_all_random_prop_names,dest)
+    pickle.dump(dict_prop_to_value_range,dest)
 
 
 
