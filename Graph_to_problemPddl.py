@@ -26,83 +26,36 @@ problem_file_string = \
 all_values = set()
 for prop in edge_propositions:
     all_values.update(set(prop.split("_end_")[1].split("_")))
-problem_file_string += " )\n "
-
-#now setup the initial state. For each property set a value. The value is set by the property range of that property
-dict_prop_to_value_range
-
-SET THE INITIAL STATE TO X = 0 AND RANDOM VALUES FROM THE PROP RANGE
-
-
 
 problem_file_string += " ".join(list(all_values))
-#
-# #insert all the proposition types into the predicates requirement
-# #collect all the propositions by splitting by "_end_" and taking the prefix.
-# string_addendum = " ( x "
-# string_addendum += " ?propValue"
-# string_addendum += " ) \n "
-# problem_file_string += string_addendum
-# for single_prop_name in ordered_all_random_prop_names:
-#     string_addendum = " ( " + single_prop_name
-#     string_addendum += " ?propValue"
-#     string_addendum += " ) \n "
-#     problem_file_string += string_addendum
-#
-# edge_prop_names = set()
-# for prop in edge_propositions:
-#     edge_prop_names.add(prop.split("_end_")[0])
-# #end for loop
-# for single_prop_name in edge_prop_names:
-#     string_addendum = " ( " + single_prop_name
-#     num_vars = len(single_prop_name.split("_"))-1
-#     for i in range(num_vars):
-#         string_addendum += " ?prior_prop" + str(i)
-#     for i in range(num_vars):
-#         string_addendum += " ?post_prop" + str(i)
-#     #end inner for
-#     string_addendum += " ) \n "
-#     problem_file_string += string_addendum
-# #end outer for
-# problem_file_string += " ) \n "
-#
-#
-# #now add the actions
-# # "op_prop0_prop3" and "op_x"
-# for single_operator in operators:
-#     action_string = "\n(:action " + single_operator + " \n"
-#     action_string += ":parameters ( "
-#     parts = single_operator.split("_")
-#     num_vars = len(parts) - 1
-#     vars = parts[1:]
-#     for single_var in vars:
-#         action_string += "\n ?prior_"+single_var+","
-#     for single_var in vars:
-#         action_string += "\n ?post_"+single_var+","
-#     action_string = action_string[:-1] #remove the last comma
-#     action_string += ")\n"
-#     action_string += ":precondition \n ( and "
-#     #add the allows transition condition
-#     action_string += " ( Allow" + "".join(["_"+single_var for single_var in vars])
-#     for single_var in vars:
-#         action_string += " ?prior_"+single_var
-#     for single_var in vars:
-#         action_string += " ?post_"+single_var
-#     action_string += " ) "
-#     #now add the conditions that the prior values are true
-#     for single_var in vars:
-#         action_string += " ( "+ single_var+ " ?prior_"+single_var + " ) "
-#
-#     action_string += ")\n"
-#     action_string += ":effect \n ( and "
-#     for single_var in vars:
-#         action_string += " ( not ("+ single_var+ " ?prior_"+single_var + " ) ) "
-#     for single_var in vars:
-#         action_string += " ( "+ single_var+ " ?post_"+single_var + " ) "
-#     action_string += "))\n"
-#
-#     problem_file_string += action_string
-# #end for loop through the actions
+
+problem_file_string += ")\n "
+problem_file_string += "(:init \n "
+
+#now setup the initial state. For each property set a value. The value is set by the property range of that property
+#todo make this randomly choose a value rather than determinisitically
+for single_item in dict_prop_to_value_range.items():
+    problem_file_string += "(" + single_item[0] + " v" +str(single_item[1][0]) + ")\n"
+
+
+string_edge_props = set()
+for single_edge_proposition in edge_propositions:
+    string_edge_props.add("(" + single_edge_proposition.split("_end_")[0] + " " + \
+                           " ".join(single_edge_proposition.split("_end_")[1].split("_")) + ") \n")
+for single_string_edge_prop in string_edge_props:
+    problem_file_string += single_string_edge_prop
+
+
+problem_file_string += ")\n" #close the init block
+
+
+#set the goal
+problem_file_string += "(:goal \n "
+problem_file_string += "(and \n "
+#todo make this randomized
+problem_file_string += "(propx v8) \n"
+problem_file_string += ")\n" #end "and"
+problem_file_string += ")" #end "goal:
 
 problem_file_string += "\n)" #close the domain file
 

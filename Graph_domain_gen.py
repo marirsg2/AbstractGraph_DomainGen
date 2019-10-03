@@ -22,11 +22,11 @@ import random
 import pickle
 
 pickle_dest_file_name = "abstract_graph_domain.p"
-num_properties = 5 #prop1, prop2 etc.
+num_properties = 9 #prop1, prop2 etc.
 value_ranges = [[0,1]]*num_properties #can be diff range of values too
 dict_prop_to_value_range = {}
 odds_of_edge = 0.125
-odds_return_to_x = 0.05
+odds_return_to_x = 0.1
 num_props_per_operator = 2 #so an operator changes 2 properties. (can change only 1 value, but conditioned on two)
 
 
@@ -37,14 +37,14 @@ num_x_property_graph_nodes = 10 #also the length of the x property
 x_prop_nodes = set()
 prop_dict = {}
 edge_propositions = []
-dict_prop_to_value_range["x"] = list(range(num_x_property_graph_nodes))
+dict_prop_to_value_range["propx"] = list(range(num_x_property_graph_nodes))
 for i in range(num_x_property_graph_nodes-1):
-    prop_dict["x_"+str(i)] = {"x":i}
-    prop_dict["x_"+str(i+1)] = {"x":i+1}
+    prop_dict["x_"+str(i)] = {"propx":i}
+    prop_dict["x_"+str(i+1)] = {"propx":i+1}
     state_graph.add_edge("x_" + str(i), "x_" + str(i + 1))
     x_prop_nodes.add("x_"+str(i))
     x_prop_nodes.add("x_"+str(i+1))
-    edge_propositions.append("Allow_x_end_" + "v"+str(i) + "_" + "v"+str(i+1))
+    edge_propositions.append("Allow_propx_end_" + "v"+str(i) + "_" + "v"+str(i+1))
 
 
 #now we have nodes x_0 to x_n connected by edges in between
@@ -118,21 +118,23 @@ for a_node in state_graph.nodes():
     #end inner for
 #end outer for
 
-plt.subplot(111)
-pos = nx.kamada_kawai_layout(state_graph)
-labels = {x:str(x) for x in pos.keys()}
-nx.draw(state_graph, pos = pos)
-nx.draw_networkx_labels(state_graph, pos, labels, font_size=16)
-plt.show()
+# plt.subplot(111)
+# pos = nx.kamada_kawai_layout(state_graph)
+# labels = {x:str(x) for x in pos.keys()}
+# nx.draw(state_graph, pos = pos)
+# nx.draw_networkx_labels(state_graph, pos, labels, font_size=16)
+# plt.show()
 
 
 #Create operators for each pair of properties.
 operators = []
 #todo extend this to allow 3 props per operator and such.
-prop_pairs = [(x,y) for x in range(num_properties) for y in range(num_properties) if x != y]
+prop_pairs = [(x,y) for x in range(num_properties) for y in range(x+1,num_properties)]
 for single_pair in prop_pairs:
     operator_name = "op" + "_prop" + str(single_pair[0])+ "_prop" + str(single_pair[1])
     operators.append(operator_name)
+operator_name = "op" + "_propx"
+operators.append(operator_name)
 
 print(edge_propositions)
 
