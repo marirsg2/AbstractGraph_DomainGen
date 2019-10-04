@@ -53,7 +53,7 @@ problem_file_string += ")\n" #close the init block
 problem_file_string += "(:goal \n "
 problem_file_string += "(and \n "
 #todo make this randomized
-problem_file_string += "(propx v4) \n"
+problem_file_string += "(propx v9) \n"
 problem_file_string += ")\n" #end "and"
 problem_file_string += ")" #end "goal:
 

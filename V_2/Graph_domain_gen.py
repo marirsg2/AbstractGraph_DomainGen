@@ -22,7 +22,7 @@ import random
 import pickle
 
 pickle_dest_file_name = "abstract_graph_domain.p"
-num_properties = 4 #prop1, prop2 etc.
+num_properties = 9 #prop1, prop2 etc.
 value_ranges = [[0,1]]*num_properties #can be diff range of values too
 dict_prop_to_value_range = {}
 odds_of_edge = 0.125
@@ -126,12 +126,12 @@ for a_node in state_graph.nodes():
     #end inner for
 #end outer for
 
-plt.subplot(111)
-pos = nx.kamada_kawai_layout(state_graph)
-labels = {x:str(x) for x in pos.keys()}
-nx.draw(state_graph, pos = pos)
-nx.draw_networkx_labels(state_graph, pos, labels, font_size=16)
-plt.show()
+# plt.subplot(111)
+# pos = nx.kamada_kawai_layout(state_graph)
+# labels = {x:str(x) for x in pos.keys()}
+# nx.draw(state_graph, pos = pos)
+# nx.draw_networkx_labels(state_graph, pos, labels, font_size=16)
+# plt.show()
 
 
 #Create operators for each pair of properties.
