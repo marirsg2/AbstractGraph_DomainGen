@@ -22,11 +22,11 @@ import random
 import pickle
 
 pickle_dest_file_name = "abstract_graph_domain.p"
-num_properties = 10 #prop1, prop2 etc.
+num_properties = 11 #prop1, prop2 etc.
 value_ranges = [[0,1]]*num_properties #can be diff range of values too
 dict_prop_to_value_range = {}
 odds_of_edge = 0.125
-odds_return_to_x = 0.0005
+odds_return_to_x = 0.0003
 num_props_per_operator = 6 #so an operator changes 2 properties. (can change only 1 value, but conditioned on two)
 
 
@@ -122,6 +122,8 @@ for a_node in state_graph.nodes():
                 new_proposition += "_"+"v"+str(prop_dict[a_node]["prop"+index])\
                                                         +"_"+"v"+str(prop_dict[b_node]["prop"+index])
 
+        if a_node in x_prop_nodes or b_node in x_prop_nodes:
+            print(new_proposition)
         edge_propositions.append(new_proposition)
         state_graph.add_edge(a_node, b_node)
     #end inner for
