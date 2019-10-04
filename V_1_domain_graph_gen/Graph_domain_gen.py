@@ -23,7 +23,7 @@ import pickle
 
 pickle_dest_file_name = "abstract_graph_domain.p"
 num_properties = 9 #prop1, prop2 etc.
-value_ranges = [[0,1]]*num_properties #can be diff range of values too
+value_ranges = [[0,1,2]]*num_properties #can be diff range of values too
 dict_prop_to_value_range = {}
 odds_of_edge = 0.125
 odds_return_to_x = 0.1
@@ -33,11 +33,15 @@ num_props_per_operator = 2 #so an operator changes 2 properties. (can change onl
 state_graph = nx.DiGraph()
 #can add special or specific states and properties here. Afterwards its all random generation
 
-num_x_property_graph_nodes = 10 #also the length of the x property
+num_x_property_graph_nodes = 5 #also the length of the x property
 x_prop_nodes = set()
 prop_dict = {}
 edge_propositions = []
 dict_prop_to_value_range["propx"] = list(range(num_x_property_graph_nodes))
+
+
+# !! Need operations to CHANGE between properties !! not just values of the same property.
+
 for i in range(num_x_property_graph_nodes-1):
     prop_dict["x_"+str(i)] = {"propx":i}
     prop_dict["x_"+str(i+1)] = {"propx":i+1}

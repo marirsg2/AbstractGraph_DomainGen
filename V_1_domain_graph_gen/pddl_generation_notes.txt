@@ -1,0 +1,5 @@
+
+Need to allow x and prop to change as well. !!
+Need x prop in random nodes as well.
+Odds of random node changing x is small.
+no random node will have x value of the goal.

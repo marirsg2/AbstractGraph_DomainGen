@@ -6,26 +6,26 @@ INFO     translator memory limit: None
 INFO     callstring: /home/yochan/miniconda3/bin/python /home/yochan/FastDownward/builds/release32/bin/translate/translate.py ./abstract_graph_domain_file.pddl ./abstract_graph_problem_file.pddl
 Parsing...
 Parsing: [0.000s CPU, 0.006s wall-clock]
-Normalizing task... [0.000s CPU, 0.001s wall-clock]
+Normalizing task... [0.010s CPU, 0.001s wall-clock]
 Instantiating...
-Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Generating Datalog program... [0.000s CPU, 0.002s wall-clock]
 Normalizing Datalog program...
-Normalizing Datalog program: [0.020s CPU, 0.013s wall-clock]
-Preparing model... [0.000s CPU, 0.004s wall-clock]
+Normalizing Datalog program: [0.010s CPU, 0.010s wall-clock]
+Preparing model... [0.000s CPU, 0.005s wall-clock]
 Generated 293 rules.
-Computing model... [0.010s CPU, 0.008s wall-clock]
-202 relevant atoms
-451 auxiliary atoms
-653 final queue length
-653 total queue pushes
-Completing instantiation... [0.000s CPU, 0.001s wall-clock]
-Instantiating: [0.030s CPU, 0.028s wall-clock]
+Computing model... [0.010s CPU, 0.012s wall-clock]
+252 relevant atoms
+471 auxiliary atoms
+723 final queue length
+723 total queue pushes
+Completing instantiation... [0.010s CPU, 0.001s wall-clock]
+Instantiating: [0.030s CPU, 0.030s wall-clock]
 Computing fact groups...
 Finding invariants...
 20 initial candidates
-Finding invariants: [0.010s CPU, 0.009s wall-clock]
+Finding invariants: [0.000s CPU, 0.009s wall-clock]
 Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
-Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.010s CPU, 0.000s wall-clock]
 Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
 Choosing groups...
 9 uncovered facts
@@ -40,7 +40,7 @@ Translating task...
 Processing axioms...
 Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
 Processing axioms: [0.000s CPU, 0.000s wall-clock]
-Translating task: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.001s wall-clock]
 0 effect conditions simplified
 0 implied preconditions added
 Detecting unreachable propositions...
@@ -51,21 +51,21 @@ Detecting unreachable propositions: [0.000s CPU, 0.000s wall-clock]
 Reordering and filtering variables...
 1 of 1 variables necessary.
 0 of 1 mutex groups necessary.
-9 of 9 operators necessary.
+19 of 19 operators necessary.
 0 of 0 axiom rules necessary.
 Reordering and filtering variables: [0.000s CPU, 0.000s wall-clock]
 Translator variables: 1
 Translator derived variables: 0
-Translator facts: 10
+Translator facts: 20
 Translator goal facts: 1
 Translator mutex groups: 0
 Translator total mutex groups size: 0
-Translator operators: 9
+Translator operators: 19
 Translator axioms: 0
-Translator task size: 39
-Translator peak memory: 268488 KB
+Translator task size: 79
+Translator peak memory: 268876 KB
 Writing output... [0.000s CPU, 0.000s wall-clock]
-Done! [0.040s CPU, 0.045s wall-clock]
+Done! [0.050s CPU, 0.048s wall-clock]
 INFO     Running search (release32).
 INFO     search input: output.sas
 INFO     search arguments: ['--heuristic', 'hff=ff()', '--heuristic', 'hcea=cea()', '--search', 'lazy_greedy([hff, hcea], preferred=[hff, hcea])']
@@ -73,49 +73,79 @@ INFO     search time limit: None
 INFO     search memory limit: None
 INFO     search executable: /home/yochan/FastDownward/builds/release32/bin/downward
 INFO     callstring: /home/yochan/FastDownward/builds/release32/bin/downward --heuristic 'hff=ff()' --heuristic 'hcea=cea()' --search 'lazy_greedy([hff, hcea], preferred=[hff, hcea])' --internal-plan-file sas_plan < output.sas
-reading input... [t=2.5279e-05s]
-done reading input! [t=0.000106533s]
-packing state variables...done! [t=0.000116826s]
+reading input... [t=4.4583e-05s]
+done reading input! [t=0.000313262s]
+packing state variables...done! [t=0.000334281s]
 Variables: 1
-FactPairs: 10
+FactPairs: 20
 Bytes per state: 4
-Building successor generator...done! [t=0.000171904s]
+Building successor generator...done! [t=0.000419169s]
 peak memory difference for root successor generator creation: 0 KB
-time for root successor generation creation: 7.228e-06s
-done initializing global data [t=0.00020163s]
-Simplifying 9 unary operators... done! [9 unary operators]
+time for root successor generation creation: 1.4584e-05s
+done initializing global data [t=0.000463237s]
+Simplifying 19 unary operators... done! [19 unary operators]
 Initializing additive heuristic...
 Initializing FF heuristic...
 Initializing context-enhanced additive heuristic...
 Conducting lazy best first search, (real) bound = 2147483647
+New best heuristic value for cea: 18
+New best heuristic value for ff: 18
+[g=0, 1 evaluated, 0 expanded, t=0.000934934s, 4360 KB]
+Initial heuristic value for cea: 18
+Initial heuristic value for ff: 18
+New best heuristic value for cea: 17
+New best heuristic value for ff: 17
+[g=1, 2 evaluated, 1 expanded, t=0.00103627s, 4360 KB]
+New best heuristic value for cea: 16
+New best heuristic value for ff: 16
+[g=2, 3 evaluated, 2 expanded, t=0.00110073s, 4360 KB]
+New best heuristic value for cea: 15
+New best heuristic value for ff: 15
+[g=3, 4 evaluated, 3 expanded, t=0.00115733s, 4360 KB]
+New best heuristic value for cea: 14
+New best heuristic value for ff: 14
+[g=4, 5 evaluated, 4 expanded, t=0.0012141s, 4492 KB]
+New best heuristic value for cea: 13
+New best heuristic value for ff: 13
+[g=5, 6 evaluated, 5 expanded, t=0.00128382s, 4492 KB]
+New best heuristic value for cea: 12
+New best heuristic value for ff: 12
+[g=6, 7 evaluated, 6 expanded, t=0.00134s, 4492 KB]
+New best heuristic value for cea: 11
+New best heuristic value for ff: 11
+[g=7, 8 evaluated, 7 expanded, t=0.00139521s, 4492 KB]
+New best heuristic value for cea: 10
+New best heuristic value for ff: 10
+[g=8, 9 evaluated, 8 expanded, t=0.00145075s, 4492 KB]
+New best heuristic value for cea: 9
+New best heuristic value for ff: 9
+[g=9, 10 evaluated, 9 expanded, t=0.0015222s, 4492 KB]
 New best heuristic value for cea: 8
 New best heuristic value for ff: 8
-[g=0, 1 evaluated, 0 expanded, t=0.000480648s, 4360 KB]
-Initial heuristic value for cea: 8
-Initial heuristic value for ff: 8
+[g=10, 11 evaluated, 10 expanded, t=0.00162131s, 4492 KB]
 New best heuristic value for cea: 7
 New best heuristic value for ff: 7
-[g=1, 2 evaluated, 1 expanded, t=0.000544505s, 4360 KB]
+[g=11, 12 evaluated, 11 expanded, t=0.0016964s, 4492 KB]
 New best heuristic value for cea: 6
 New best heuristic value for ff: 6
-[g=2, 3 evaluated, 2 expanded, t=0.000583871s, 4360 KB]
+[g=12, 13 evaluated, 12 expanded, t=0.00177701s, 4492 KB]
 New best heuristic value for cea: 5
 New best heuristic value for ff: 5
-[g=3, 4 evaluated, 3 expanded, t=0.000616033s, 4360 KB]
+[g=13, 14 evaluated, 13 expanded, t=0.00189684s, 4492 KB]
 New best heuristic value for cea: 4
 New best heuristic value for ff: 4
-[g=4, 5 evaluated, 4 expanded, t=0.000649641s, 4360 KB]
+[g=14, 15 evaluated, 14 expanded, t=0.00199778s, 4492 KB]
 New best heuristic value for cea: 3
 New best heuristic value for ff: 3
-[g=5, 6 evaluated, 5 expanded, t=0.000682071s, 4360 KB]
+[g=15, 16 evaluated, 15 expanded, t=0.00206875s, 4492 KB]
 New best heuristic value for cea: 2
 New best heuristic value for ff: 2
-[g=6, 7 evaluated, 6 expanded, t=0.000712132s, 4360 KB]
+[g=16, 17 evaluated, 16 expanded, t=0.00218259s, 4492 KB]
 New best heuristic value for cea: 1
 New best heuristic value for ff: 1
-[g=7, 8 evaluated, 7 expanded, t=0.000743429s, 4492 KB]
+[g=17, 18 evaluated, 17 expanded, t=0.00225893s, 4492 KB]
 Solution found!
-Actual search time: 0.000328783s [t=0.000783863s]
+Actual search time: 0.00143645s [t=0.00232541s]
 op_propx v0 v1 (1)
 op_propx v1 v2 (1)
 op_propx v2 v3 (1)
@@ -124,18 +154,28 @@ op_propx v4 v5 (1)
 op_propx v5 v6 (1)
 op_propx v6 v7 (1)
 op_propx v7 v8 (1)
-Plan length: 8 step(s).
-Plan cost: 8
-Expanded 8 state(s).
+op_propx v8 v9 (1)
+op_propx v9 v10 (1)
+op_propx v10 v11 (1)
+op_propx v11 v12 (1)
+op_propx v12 v13 (1)
+op_propx v13 v14 (1)
+op_propx v14 v15 (1)
+op_propx v15 v16 (1)
+op_propx v16 v17 (1)
+op_propx v17 v18 (1)
+Plan length: 18 step(s).
+Plan cost: 18
+Expanded 18 state(s).
 Reopened 0 state(s).
-Evaluated 9 state(s).
-Evaluations: 18
-Generated 8 state(s).
+Evaluated 19 state(s).
+Evaluations: 38
+Generated 18 state(s).
 Dead ends: 0 state(s).
-Number of registered states: 9
-Int hash set load factor: 9/16 = 0.5625
-Int hash set resizes: 4
-Search time: 0.000342413s
-Total time: 0.000787396s
+Number of registered states: 19
+Int hash set load factor: 19/32 = 0.59375
+Int hash set resizes: 5
+Search time: 0.00146809s
+Total time: 0.00234152s
 Solution found.
 Peak memory: 4492 KB

@@ -7,7 +7,7 @@ import pickle
 import networkx as nx
 
 pickle_source_file = "abstract_graph_domain.p"
-problem_file_name = "abstract_graph_problem_file.pddl"
+problem_file_name = "v2_abstract_graph_problem_file.pddl"
 
 with open(pickle_source_file,"rb") as src:
     state_graph = pickle.load(src)
@@ -53,7 +53,7 @@ problem_file_string += ")\n" #close the init block
 problem_file_string += "(:goal \n "
 problem_file_string += "(and \n "
 #todo make this randomized
-problem_file_string += "(propx v8) \n"
+problem_file_string += "(propx v4) \n"
 problem_file_string += ")\n" #end "and"
 problem_file_string += ")" #end "goal:
 

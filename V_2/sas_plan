@@ -6,4 +6,5 @@
 (op_propx v5 v6)
 (op_propx v6 v7)
 (op_propx v7 v8)
-; cost = 8 (unit cost)
+(op_propx v8 v9)
+; cost = 9 (unit cost)
